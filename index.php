@@ -32,10 +32,12 @@
     $db = "<faishalarif>";
 
     try {
-        $conn = new PDO("sqlsrv:server = $host; Database = $db", $user, $pass);
-        $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-    } catch(Exception $e) {
-        echo "Failed: " . $e;
+        $conn = new PDO("sqlsrv:server = tcp:faishalarif.database.windows.net,1433; Database = faishalarif", "faishal", "{chale@2pm}");
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+    catch (PDOException $e) {
+        print("Error connecting to SQL Server.");
+        die(print_r($e));
     }
 
     if (isset($_POST['submit'])) {
