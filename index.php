@@ -31,7 +31,7 @@
     $pass = "<Password admin database Anda>";
     $db = "<Nama database Anda>";
     try {
-        $conn = new PDO("sqlsrv:server = tcp:faishalarif.database.wondiws.net,1433; Database = faishalarif", "faishal", "{your_password_here}");
+        $conn = new PDO("sqlsrv:server = tcp:faishalarif.database.wondiws.net,1433; Database = faishalarif", "faishal", "chale@2pm");
         $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     } 
     catch(PDOException $e) {
