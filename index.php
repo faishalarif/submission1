@@ -26,7 +26,7 @@
        <input type="submit" name="load_data" value="Load Data" />
  </form>
  <?php
-    $host = "faishalarif.database.windows.net";
+    $host = "faishalarif.database.windows.net,1433";
     $user = "faishal";
     $pass = "chale@2pm";
     $db = "faishalarif";
@@ -74,11 +74,11 @@
                 echo "<th>Email</th>";
                 echo "<th>Job</th>";
                 echo "<th>Date</th></tr>";
-                foreach($registrants as $registrant) {
-                    echo "<tr><td>".$registrant['name']."</td>";
-                    echo "<td>".$registrant['email']."</td>";
-                    echo "<td>".$registrant['job']."</td>";
-                    echo "<td>".$registrant['date']."</td></tr>";
+                foreach($registrants as $registrantion) {
+                    echo "<tr><td>".$registrantion['name']."</td>";
+                    echo "<td>".$registrantion['email']."</td>";
+                    echo "<td>".$registrantion['job']."</td>";
+                    echo "<td>".$registrantion['date']."</td></tr>";
                 }
                 echo "</table>";
             } else {
