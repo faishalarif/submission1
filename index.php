@@ -26,12 +26,12 @@
        <input type="submit" name="load_data" value="Load Data" />
  </form>
  <?php
-    $host = "<Nama server database Anda>";
-    $user = "<Nama admin database Anda>";
-    $pass = "<Password admin database Anda>";
-    $db = "<Nama database Anda>";
+    $host = "faishalarif.database.windows.net";
+    $user = "faishal";
+    $pass = "chale@2pm";
+    $db = "faishalarif";
     try {
-        $conn = new PDO("sqlsrv:server = tcp:faishalarif.database.wondiws.net,1433; Database = faishalarif", "faishal", "chale@2pm");
+        $conn = new PDO("sqlsrv:server = tcp:faishalarif.database.windows.net,1433; Database = faishalarif", "faishal", "chale@2pm");
         $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     } 
     catch(PDOException $e) {
@@ -39,7 +39,7 @@
         die(print_r($e));
     }
 
-    $connectionInfo = array("UID" => "faishal", "pwd" => "{your_password_here}", "Database" => "faishalarif", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+    $connectionInfo = array("UID" => "faishal", "pwd" => "chale@2pm", "Database" => "faishalarif", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
     $serverName = "tcp:faishalarif.database.windows.net,1433";
     $conn = sqlsrv_connect($serverName, $connectionInfo);
 
