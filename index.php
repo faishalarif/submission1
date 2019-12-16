@@ -26,23 +26,26 @@
        <input type="submit" name="load_data" value="Load Data" />
  </form>
  <?php
-    $host = "faishalarif.azurewebsites.net";
+    $host = "tcp:faishalarif.database.windows.net,1433";
     $user = "faishal";
     $pass = "chale@2pm";
     $db = "faishalarif";
-    try {
-    $conn = new PDO("sqlsrv:server = tcp:faishalarif.database.windows.net; Database = faishalarif", "faishal", "chale@2pm");
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $e) {
-    print("Error connecting to SQL Server.");
-    die(print_r($e));
-}
-$connectionInfo = array("UID" => "faishal", "pwd" => "chale@2pm", "Database" => "faishalarif", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-$serverName = "tcp:faishalarif.database.windows.net";
-$conn = sqlsrv_connect($serverName, $connectionInfo);
 
+// PHP Data Objects(PDO) Sample Code:
+    try {
+        $conn = new PDO("sqlsrv:server = tcp:faishalarif.database.windows.net,1433; Database = faishalarif", "faishal", "chale@2pm");
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
+    catch (PDOException $e) {
+        print("Error connecting to SQL Server.");
+        die(print_r($e));
+    }
+
+    // SQL Server Extension Sample Code:
+    $connectionInfo = array("UID" => "faishal", "pwd" => "chale@2pm", "Database" => "faishalarif", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+    $serverName = "tcp:faishalarif.database.windows.net,1433";
+    $conn = sqlsrv_connect($serverName, $connectionInfo);
+
     if (isset($_POST['submit'])) {
         try {
             $name = $_POST['name'];
