@@ -26,23 +26,16 @@
        <input type="submit" name="load_data" value="Load Data" />
  </form>
  <?php
-    $host = "faishalarif.database.windows.net";
-    $user = "faishal";
-    $pass = "chale@2pm";
-    $db = "faishalarif";
+    $host = "<Nama server database Anda>";
+    $user = "<Nama admin database Anda>";
+    $pass = "<Password admin database Anda>";
+    $db = "<Nama database Anda>";
     try {
-        $conn = new PDO("sqlsrv:server = tcp:faishalarif.database.windows.net; Database = faishalarif", "faishal", "chale@2pm");
+        $conn = new PDO("sqlsrv:server = $host; Database = $db", $user, $pass);
         $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-    } 
-    catch(PDOException $e) {
-        print("Error connecting to SQL Server.");
-        die(print_r($e));
+    } catch(Exception $e) {
+        echo "Failed: " . $e;
     }
-
-    $connectionInfo = array("UID" => "faishal", "pwd" => "chale@2pm", "Database" => "faishalarif", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-    $serverName = "tcp:faishalarif.database.windows.net";
-    $conn = sqlsrv_connect($serverName, $connectionInfo);
-
     if (isset($_POST['submit'])) {
         try {
             $name = $_POST['name'];
@@ -74,11 +67,11 @@
                 echo "<th>Email</th>";
                 echo "<th>Job</th>";
                 echo "<th>Date</th></tr>";
-                foreach($registrants as $registrantion) {
-                    echo "<tr><td>".$registrantion['name']."</td>";
-                    echo "<td>".$registrantion['email']."</td>";
-                    echo "<td>".$registrantion['job']."</td>";
-                    echo "<td>".$registrantion['date']."</td></tr>";
+                foreach($registrants as $registrant) {
+                    echo "<tr><td>".$registrant['name']."</td>";
+                    echo "<td>".$registrant['email']."</td>";
+                    echo "<td>".$registrant['job']."</td>";
+                    echo "<td>".$registrant['date']."</td></tr>";
                 }
                 echo "</table>";
             } else {
