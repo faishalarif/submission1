@@ -18,10 +18,10 @@
  <body>
  <h1>Register here!</h1>
  <p>Fill in your name and email address, then click <strong>Submit</strong> to register.</p>
- <form method="post" action="index.php" enctype="multipart/form-data" >
-       Name  <input type="text" name="name" id="name"/></br></br>
-       Email <input type="text" name="email" id="email"/></br></br>
-       Job <input type="text" name="job" id="job"/></br></br>
+ <form method="post" action="index.php" enctype="multipart/form-data">
+       Name  <input type="text" name="name" id="name"/><br></br>
+       Email <input type="text" name="email" id="email"/><br></br>
+       Job <input type="text" name="job" id="job"/><br></br>
        <input type="submit" name="submit" value="Submit" />
        <input type="submit" name="load_data" value="Load Data" />
  </form>
@@ -31,7 +31,7 @@
     $pass = "chale@2pm";
     $db = "faishalarif";
 
-// PHP Data Objects(PDO) Sample Code:
+    // PHP Data Objects(PDO) Sample Code:
     try {
         $conn = new PDO("sqlsrv:server = tcp:faishalarif.database.windows.net,1433; Database = faishalarif", "faishal", "chale@2pm");
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -42,8 +42,8 @@
     }
 
     // SQL Server Extension Sample Code:
-    $connectionInfo = array("UID" => "faishal", "pwd" => "{chale@2pm}", "Database" => "faishalarif", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-    $serverName = "faishalarif.database.windows.net";
+    $connectionInfo = array("UID" => "faishal", "pwd" => "chale@2pm", "Database" => "faishalarif", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+    $serverName = "tcp:faishalarif.database.windows.net,1433";
     $conn = sqlsrv_connect($serverName, $connectionInfo);
 
     if (isset($_POST['submit'])) {
@@ -64,8 +64,9 @@
         } catch(Exception $e) {
             echo "Failed: " . $e;
         }
-        echo "<h3>Your're registered!</h3>";
-    } else if (isset($_POST['load_data'])) {
+        echo "<h3>Your're registered!</h3>";} 
+        
+        else if (isset($_POST['load_data'])) {
         try {
             $sql_select = "SELECT * FROM [dbo].[Registration]";
             $stmt = $conn->query($sql_select);
