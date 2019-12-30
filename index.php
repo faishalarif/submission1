@@ -67,8 +67,8 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
         echo "<h3>Your're registered!</h3>";
     } else if (isset($_POST['load_data'])) {
         try {
-            $sql_select = "SELECT * FROM Registration";
-            $stmt = $conn->query($sql_select);
+            $sql_select = "SELECT * FROM dbo.Registration";
+            $stmt = $conn->Query1($sql_select);
             $registrants = $stmt->fetchAll(); 
             if(count($registrants) > 0) {
                 echo "<h2>People who are registered:</h2>";
