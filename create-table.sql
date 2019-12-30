@@ -1,7 +1,7 @@
-create table dbo.Registration(
-    id INT NOT NULL IDENTITY(1,1) PRIMARY KEY(id),
-    name VARCHAR(30),
-    email VARCHAR(30),
-    job VARCHAR(30),
-    date DATE
-);
+/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP (1000) [id]
+      ,[name]
+      ,[email]
+      ,[job]
+      ,[date]
+  FROM [dbo].[Registration]
