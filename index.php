@@ -1,7 +1,6 @@
-<!DOCTYPE html>
 <html>
  <head>
- <title>Registration Form</title>
+ <Title>Registration Form</Title>
  <style type="text/css">
  	body { background-color: #fff; border-top: solid 10px #000;
  	    color: #333; font-size: .85em; margin: 20; padding: 20;
@@ -26,23 +25,27 @@
        <input type="submit" name="submit" value="Submit" />
        <input type="submit" name="load_data" value="Load Data" />
  </form>
- 
-<?php
-  
-    // PHP Data Objects(PDO) Sample Code:
-    try {
-        $conn = new PDO("sqlsrv:server = tcp:faishalarif.database.windows.net,1433; Database = faishalarif", "faishal", "chale@2pm");
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
-    catch (PDOException $e) {
-        print("Error connecting to SQL Server.");
-        die(print_r($e));
-    }
-    
-    // SQL Server Extension Sample Code:
-    $connectionInfo = array("UID" => "faishal", "pwd" => "chale@2pm", "Database" => "faishalarif", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
-    $serverName = "tcp:faishalarif.database.windows.net,1433";
-    $conn = sqlsrv_connect($serverName, $connectionInfo);
+ <?php
+    $host = "tcp:faishalarif.database.windows.net,1433";
+    $user = "faishal";
+    $pass = "chale@2pm";
+    $db = "faishalarif";
+   
+// PHP Data Objects(PDO) Sample Code:
+try {
+    $conn = new PDO("sqlsrv:server = tcp:faishalarif.database.windows.net,1433; Database = faishalarif", "faishal", "chale@2pm");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+
+// SQL Server Extension Sample Code:
+$connectionInfo = array("UID" => "faishal", "pwd" => "chale@2pm", "Database" => "faishalarif", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "tcp:faishalarif.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
+
     if (isset($_POST['submit'])) {
         try {
             $name = $_POST['name'];
@@ -50,7 +53,7 @@
             $job = $_POST['job'];
             $date = date("Y-m-d");
             // Insert data
-            $sql_insert = "INSERT INTO registration (name, email, job, date) 
+            $sql_insert = "INSERT INTO Registration (name, email, job, date) 
                         VALUES (?,?,?,?)";
             $stmt = $conn->prepare($sql_insert);
             $stmt->bindValue(1, $name);
@@ -64,7 +67,7 @@
         echo "<h3>Your're registered!</h3>";
     } else if (isset($_POST['load_data'])) {
         try {
-            $sql_select = "SELECT * FROM registration";
+            $sql_select = "SELECT * FROM Registration";
             $stmt = $conn->query($sql_select);
             $registrants = $stmt->fetchAll(); 
             if(count($registrants) > 0) {
@@ -88,6 +91,6 @@
             echo "Failed: " . $e;
         }
     }
-?>
+ ?>
  </body>
-</html> 
+ </html>
