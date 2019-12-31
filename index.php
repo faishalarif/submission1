@@ -53,7 +53,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
             $job = $_POST['job'];
             $date = date("Y-m-d");
             // Insert data
-            $sql_insert = "INSERT INTO Registration (name, email, job, date) 
+            $sql_insert = "INSERT INTO dbo.Registration (name, email, job, date) 
                         VALUES (?,?,?,?)";
             $stmt = $conn->prepare($sql_insert);
             $stmt->bindValue(1, $name);
@@ -68,7 +68,7 @@ $conn = sqlsrv_connect($serverName, $connectionInfo);
     } else if (isset($_POST['load_data'])) {
         try {
             $sql_select = "SELECT * FROM dbo.Registration";
-            $stmt = $conn->Query1($sql_select);
+            $stmt = $conn->SQLQuery3($sql_select);
             $registrants = $stmt->fetchAll(); 
             if(count($registrants) > 0) {
                 echo "<h2>People who are registered:</h2>";
